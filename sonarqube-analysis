@@ -1,5 +1,5 @@
-pipeline {
-    agent any
+node {
+  
 
     stages {
         stage('SCM Checkout') {
@@ -27,11 +27,12 @@ pipeline {
         stage("Quality Gate Status Check") {
             steps {
                 timeout(time: 1, unit: 'HOURS') {
+                    script {
                         def qg = waitForQualityGate()
-                        if (qg.status != 'OK') 
+                        if (qg.status != 'OK') {
                             error "Quality Gate check failed!"
-                        
-                    
+                        }
+                    }
                 }
             }
         }
