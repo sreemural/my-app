@@ -21,7 +21,7 @@ node{
               def qg = waitForQualityGate()
               if (qg.status != 'OK') 
           
-      }    
+   }    
    
    
 
