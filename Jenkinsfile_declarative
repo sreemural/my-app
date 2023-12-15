@@ -1,6 +1,11 @@
 
 pipeline{
     agent any
+
+    environment{
+        PATH = "//opt/maven-3/bin:$PATH"
+
+    }
     
     stages{
         stage("Git Checkout"){
@@ -8,5 +13,12 @@ pipeline{
                git 'https://github.com/sreemural/my-app.git'
            } 
         }
+     stage("Maven build"){
+        steps{
+            sh "mvn clean package"
+        }
+
+           
     }
+  }
 }
