@@ -22,15 +22,15 @@ pipeline{
        }
      stage("deploy"){
             steps{
-                sshagent(['dev-tomcat'])
+                sshagent(['dev-tomcat']){
                 sh '''
-                scp -o StrictHostKeyChecking=no target/myweb.war ubuntu@34.203.212.59:/opt/tomcat-10/webapps/
-                ssh ubuntu@34.203.212.59 /opt/tomcat-10/bin/shutdown.sh
-                ssh ubuntu@34.203.212.59 /opt/tomcat-10/bin/startup.sh
+                   scp -o StrictHostKeyChecking=no target/myweb.war ubuntu@34.203.212.59:/opt/tomcat-10/webapps/
+                   ssh ubuntu@34.203.212.59 /opt/tomcat-10/bin/shutdown.sh
+                   ssh ubuntu@34.203.212.59 /opt/tomcat-10/bin/startup.sh
 
                '''
-            
             }
+         }
             
         
       }
