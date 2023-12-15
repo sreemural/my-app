@@ -1,0 +1,19 @@
+pipeline{
+    agent any
+
+    stages{
+        stage('SCM'){
+            steps {
+                git credentialsId: 'Git',
+                url: 'https://github.com/sreemural/my-app.git'
+            }
+
+        stage('Maven build'){
+            steps{
+                sh "mvn clean package"
+            }
+
+        }
+        }
+    }
+}
